@@ -15,6 +15,18 @@ wit-bindgen-rt = "0.26.0"
 serde_json = "1.0"
 serde = { version = "^1", features = ["derive"] }
 tokio = { version = "1", features = ["rt"] }
+hmac = "0.12"  
+sha2 = "0.10"
+base64 = "0.21"
+# For PEM decoding
+pem = { version = "3", optional = true }
+simple_asn1 = { version = "0.6", optional = true }
+subtle = "2.6"
+
+[features]
+default = ["use_pem"]
+use_pem = ["pem", "simple_asn1"]
+
 
 
 [package.metadata.component]

@@ -13,7 +13,7 @@ use serde_json::json;
 use bindings::{
     exports::supabase::wrappers::routines::Guest,
     supabase::wrappers::{
-        http, time,
+        http, time, jwt,
         types::{Cell, Context, FdwError, FdwResult, OptionsType, Row, TypeOid},
         utils,
     },
@@ -25,7 +25,12 @@ use std::error::Error;
 // 追加モジュール
 use serde::{Deserialize, Serialize};
 use tokio::runtime::Builder;
-
+use hmac::{Hmac, Mac}; // `NewMac` は不要
+use sha2::Sha256;
+use base64::{Engine as _, engine::general_purpose, engine::GeneralPurposeConfig};
+#[cfg(feature = "use_asn1")]
+use simple_asn1::{to_der, from_der, ASN1Block, ASN1Class, Tag};
+use subtle::ConstantTimeEq;
 
 
 
