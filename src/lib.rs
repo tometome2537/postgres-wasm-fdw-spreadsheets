@@ -6,6 +6,9 @@
 mod bindings;
 // serde_json::ValueをJsonValueとしてインポートし、JSONデータを扱います。
 use serde_json::Value as JsonValue;
+use serde_json::Value;
+use serde_json::to_string; // to_string関数をインポートします
+use serde_json::json;
 // bindingsモジュールを使用し、FDWの操作に必要なサポート機能をインポートしています。
 use bindings::{
     exports::supabase::wrappers::routines::Guest,
@@ -15,6 +18,16 @@ use bindings::{
         utils,
     },
 };
+
+// デフォルト追加モジュール
+use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::error::Error;
+// 追加モジュール
+use serde::{Deserialize, Serialize};
+use tokio::runtime::Builder;
+
+
+
 
 // ⭐️ここまでモジュールとインポート
 
