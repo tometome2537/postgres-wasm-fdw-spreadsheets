@@ -1,0 +1,25 @@
+[package]
+name = "postgres_wasm_fdw_spreadsheets"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+strip = "debuginfo"
+lto = true
+
+[dependencies]
+wit-bindgen-rt = "0.26.0"
+serde_json = "1.0"
+
+
+[package.metadata.component]
+package = "tometome2537:postgres-wasm-fdw-spreadsheets"
+
+[package.metadata.component.target]
+path = "wit"
+
+[package.metadata.component.target.dependencies]
+"supabase:wrappers" = { path = "./supabase-wrappers-wit" }
